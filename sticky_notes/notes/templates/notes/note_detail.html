@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ note.title }}</h2>
+<p>{{ note.content }}</p>
+<p><strong>Created:</strong> {{ note.created_at }}</p>
+
+<a href="{% url 'note_update' note.pk %}">Edit</a>
+
+<form method="post" action="{% url 'note_delete' note.pk %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+
+<a href="{% url 'note_list' %}">Back</a>
+{% endblock %}
